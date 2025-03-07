@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="folder.png" />
+    <None Remove="Views\drag-and-drop.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="VideoLibrary" Version="3.2.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Views\drag-and-drop.png" />
+    <Resource Include="Views\Icons\folder.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+</Project>

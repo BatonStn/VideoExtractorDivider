@@ -1,0 +1,126 @@
+﻿<UserControl
+    x:Class="VideoExtractor.Views.HomeView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:VideoExtractor.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Border Margin="2,0,1,2">
+
+                <Grid Name="FileGrid" Drop="FileGrid_Drop" AllowDrop="true" Background="WhiteSmoke">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="2*" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Upload Video File" TextAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"/>
+
+                    <Image Source="/Views/drag-and-drop.png" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                           Grid.Row="1" Width="80" Margin="0,0,0,20"/>
+
+                    <TextBlock Name="dragdropText" Text="Drag &amp; Drop File Here" TextWrapping="Wrap"
+                               TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                               Grid.Row="1" Grid.RowSpan="2" Margin="0,40,0,0" />
+                    
+                    <Button HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Click="Open_Explorer"
+                            Height="30" Width="200">
+                        <TextBlock Text="Browse File" />
+                    </Button>
+                    <!--<Button Grid.Row="3" 
+                HorizontalAlignment="Center" VerticalAlignment="Top"
+                Command="{Binding NavigateAccountCommand}"
+                Content="Edit" Margin="0,54,0,0" />-->
+                </Grid>
+            </Border>
+
+            <Border Margin="1,0,2,2" Grid.Column="1">
+                <Grid Background="WhiteSmoke">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Download Youtube Video" TextAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"/>
+
+                    <Grid Name="youtubeURLMenu" Grid.Row="1" Visibility="Visible">
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" 
+                                    Text="Enter Youtube Video URL" Margin="0,0,0,40"/>
+
+                        <TextBox Name="urlTextBox" Text=""
+                                 VerticalAlignment="Center" 
+                                 HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                                 Height="30" Margin="50,40,50,0"/>
+                    </Grid>
+
+                    <Grid Name="youtubeVideoDownloadMenu" Grid.Row="1" Visibility="Hidden">
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Name="pbInfos"
+                                   Text="" Margin="0,0,0,40"/>
+                        <ProgressBar Minimum="0" Maximum="100" Name="pbStatus" Height="30" Width="200" Visibility="Visible"
+                                     HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,40,0,0"/>
+                        <TextBlock Text="{Binding ElementName=pbStatus, Path=Value, StringFormat={}{0:0}%}" 
+                                   Visibility="Visible" Name="pbStatusText"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,40,0,0"/>
+                    </Grid>
+
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button VerticalAlignment="Center" HorizontalAlignment="Right" 
+                                Height="30" Width="150" Grid.Row="2" Click="ButtonDownloadAudio" Margin="0,0,20,0">
+                            <TextBlock Text="Download Audio"/>
+                        </Button>
+                        <Button VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="1"
+                                Height="30" Width="150" Grid.Row="2" Click="ButtonDownload" Margin="20,0,0,0" >
+                            <TextBlock Text="Download Video"/>
+                        </Button>
+                    </Grid>
+                    
+                </Grid>
+            </Border>
+
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Border Margin="2,0,2,2">
+                <Grid Background="WhiteSmoke">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <Grid VerticalAlignment="Center" Margin="100,0,100,0">
+                        <TextBlock Text="Video URI: " VerticalAlignment="Center"/>
+                        <TextBox Name="VideoSourceUri" Text="{Binding VideoSourceString, UpdateSourceTrigger=PropertyChanged}" 
+                                 VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
+                                 Margin="65,0,0,0" Height="30" />
+                    </Grid>
+                    
+                    <Button Grid.Row="1" Height="30" Width="160" Command="{Binding NavigateEditCommand}">
+                        <TextBlock Text="Edit Video"/>
+                    </Button>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>
